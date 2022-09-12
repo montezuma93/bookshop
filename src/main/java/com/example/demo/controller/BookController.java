@@ -19,11 +19,14 @@ import java.util.List;
 @RestController
 public class BookController {
 
-    @Autowired
     BookRepository bookRepository;
+    BookService bookService;
 
     @Autowired
-    BookService bookService;
+    BookController(BookRepository bookRepository, BookService bookService) {
+        this.bookRepository = bookRepository;
+        this.bookService = bookService;
+    }
 
     @PostMapping("/books")
     public void saveBook(
@@ -42,8 +45,8 @@ public class BookController {
     }
 
     @GetMapping("/books")
-    public List<Book> getBooks() {
-        return bookRepository.findAll();
+    public ResponseEntity<List<Book>> getBooks() {
+        return new ResponseEntity<>(bookRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/hello")

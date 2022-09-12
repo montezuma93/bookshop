@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.domain.Book;
 import com.example.demo.repository.BookRepository;
+import com.example.demo.service.exception.NoBooksFoundException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +34,7 @@ class BookServiceTest {
 
     @ParameterizedTest
     @MethodSource(value= "getBooksByTitleParams")
-    void getBooksByTitle(List<Book> booksInDatabase, List<Book> expectedBooks) {
+    void getBooksByTitle(List<Book> booksInDatabase, List<Book> expectedBooks) throws NoBooksFoundException {
         // given
         Mockito.when(bookRepositoryMock.findAll()).thenReturn(booksInDatabase);
         BookService underTest = createUnderTest();

@@ -28,9 +28,11 @@ public class BookService {
              foundTitles.add(book);
          }
        }
+       /*
        if(foundTitles.isEmpty()) {
            throw new NoBooksFoundException("No books found");
        }
+        */
       return foundTitles;
    }
 }
