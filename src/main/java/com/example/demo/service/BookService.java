@@ -11,11 +11,16 @@ import java.util.Objects;
 
 @Service
 public class BookService {
-    @Autowired
+
     public BookRepository bookRepository;
 
+    @Autowired
+    BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
    public List<Book> getBooksByTitle(String title){
-     List<Book> allBooks = bookRepository.findAll();
+        List<Book> allBooks = bookRepository.findAll();
        List<Book> foundTitles= new ArrayList<>();
        for(Book book: allBooks){
          if(Objects.equals(book.getTitle(), title)){
