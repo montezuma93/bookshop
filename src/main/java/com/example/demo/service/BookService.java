@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @Service
 public class BookService {
-
+    @Autowired
     public BookRepository bookRepository;
 
     @Autowired
