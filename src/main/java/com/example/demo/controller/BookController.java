@@ -28,9 +28,9 @@ public class BookController {
     }
 
     @PostMapping("/books")
-    public void saveBook(
-            @RequestBody Book book) {
-        bookRepository.save(book);
+    public void saveBooks(
+            @RequestBody List<Book> books) {
+        bookRepository.saveAll(books);
     }
 
     @GetMapping("/booksByTitle")
