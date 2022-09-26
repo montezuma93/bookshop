@@ -1,4 +1,4 @@
-package com.example.demo.repository;
+package com.example.demo.service.exception;
 
 import com.example.demo.domain.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
