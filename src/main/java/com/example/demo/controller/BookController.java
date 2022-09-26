@@ -43,11 +43,22 @@ public class BookController {
 
         }
     }
+
     @GetMapping("/booksByPrice")
-    //ResponseEntity: gibt züruck body und status code
+    //ResponseEntity: gibt zurück body und status code
     public ResponseEntity<List<Book>> getBooksByPrice(@RequestParam int price) {
-        List<Book> books = bookService.getBooksByPrice(price);
-        if(books.isEmpty()) {
+        List<Book> books = bookService.getBooksByPrice(price, price);
+        if (books.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(books, HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/booksByPrices") // Einstiegspunkt in der URL
+    public ResponseEntity<List<Book>> getBooksByPrices(@RequestParam int startPrice, @RequestParam int endPrice) {
+        List<Book> books = bookService.getBooksByPrice(startPrice, endPrice);
+        if (books.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(books, HttpStatus.OK);

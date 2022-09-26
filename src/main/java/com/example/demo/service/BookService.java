@@ -36,16 +36,16 @@ public class BookService {
         */
        return foundTitles;
    }
-    public List<Book> getBooksByPrice(int price) {
-        //gibt alle bücher aus der datenbank züruck
+    public List<Book> getBooksByPrice(int startPrice, int endPrice) {
+        //gibt alle bücher aus der datenbank zurück
         List<Book> allBooks = bookRepository.findAll();
-        //erstellt eine neue lehre liste, in der alle bucher abgespeichert werden mit dem gesuchten preis
+        //erstellt eine neue leere liste, in der alle Bücher abgespeichert werden mit dem gesuchten preis
         List<Book> foundBooksByPrices = new ArrayList<>();
-        //holt ein buch nach dem anderen aus der Liste allBooks
+        //holt ein Buch nach dem anderen aus der Liste allBooks
         for (Book book : allBooks) {
             //book.getPrice() == price
-            //wenn der preis des buches gleich ist wie der gesucher preis, dann gehe in die if bedienung
-            if(Objects.equals(book.getPrice(), price)) {
+            //wenn der preis des buches gleich ist wie der gesuchter preis, dann gehe in die if bedienung
+            if(book.getPrice() >= startPrice && book.getPrice() <= endPrice) {
                 //speichert das buch in die Liste foundBooksByPrices
                 foundBooksByPrices.add(book);
             }

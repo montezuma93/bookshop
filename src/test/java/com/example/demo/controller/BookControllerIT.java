@@ -46,16 +46,16 @@ public class BookControllerIT {
                 .andExpect(status().isNotFound());
 
         mockMvc.perform(post("/books")  // Request post fügt Objekte hinzu
-                .contentType(MediaType.APPLICATION_JSON_VALUE) // Schickt einen Header, der Inhalt des Headers sagt aus das ein JSON-Objekt gesendet wird
-                .accept(MediaType.APPLICATION_JSON_VALUE) // Egal was zurückkommt hauptsache ein JSON
-                // erstellt einen Body und fügt ihm dem Request hinzu
-                // objektMapper wandlet das Objekt in ein JSON String um
-                .content(objectMapper.writeValueAsString(Arrays.asList(
-                        new Book(1L, "Harry Potter", "Author", "Content", 10),
-                        new Book(2L, "Harry Potter", "Author", "Content", 12),
-                        new Book(3L, "Peter Hase", "Author", "Content", 14),
-                        new Book(4L, "Raabe Socke", "Author", "Content", 14),
-                        new Book(5L, "Raabe Socke", "Author", "Content", 22)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE) // Schickt einen Header, der Inhalt des Headers sagt aus das ein JSON-Objekt gesendet wird
+                        .accept(MediaType.APPLICATION_JSON_VALUE) // Egal was zurückkommt hauptsache ein JSON
+                        // erstellt einen Body und fügt ihm dem Request hinzu
+                        // objektMapper wandlet das Objekt in ein JSON String um
+                        .content(objectMapper.writeValueAsString(Arrays.asList(
+                                new Book(1L, "Harry Potter", "Author", "Content", 10),
+                                new Book(2L, "Harry Potter", "Author", "Content", 12),
+                                new Book(3L, "Peter Hase", "Author", "Content", 14),
+                                new Book(4L, "Raabe Socke", "Author", "Content", 14),
+                                new Book(5L, "Raabe Socke", "Author", "Content", 22)
                         ))))
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -70,6 +70,15 @@ public class BookControllerIT {
                         .param("price", "14"))
                 .andDo(print())
                 .andExpect(content().string("[{\"id\":3,\"title\":\"Peter Hase\",\"author\":\"Author\",\"content\":\"Content\",\"price\":14},{\"id\":4,\"title\":\"Raabe Socke\",\"author\":\"Author\",\"content\":\"Content\",\"price\":14}]"))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(get("/booksByPrices")
+                        .param("startPrice", "10").param("endPrice", "14"))
+                .andDo(print())
+                .andExpect(content().string("[" + "{\"id\":1,\"title\":\"Harry Potter\",\"author\":\"Author\",\"content\":\"Content\",\"price\":10}," +
+                        "{\"id\":2,\"title\":\"Harry Potter\",\"author\":\"Author\",\"content\":\"Content\",\"price\":12}," +
+                        "{\"id\":3,\"title\":\"Peter Hase\",\"author\":\"Author\",\"content\":\"Content\",\"price\":14}," +
+                        "{\"id\":4,\"title\":\"Raabe Socke\",\"author\":\"Author\",\"content\":\"Content\",\"price\":14}]"))
                 .andExpect(status().isOk());
 
     }
