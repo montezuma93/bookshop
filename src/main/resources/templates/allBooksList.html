@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>All Books</title>
+</head>
+<body>
+
+<table class="table">
+    <thead class = "thead-light">
+    <tr>
+        <th class="text-left">Title</th>
+        <th class="text-left">Rating</th>
+        <th class="text-left">Priority</th>
+        <th class="text-left">Comment</th>
+        <th class="text-left"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="watchlistItem : ${watchlistItems}">
+        <td th:text="${watchlistItem.title}">Avatar</td>
+        <td th:text="${watchlistItem.author}">7.8</td>
+        <td th:text="${watchlistItem.content}">LOW</td>
+        <td th:text="${watchlistItem.price}">Peter recommended</td>
+        <td><a href="#" class="btn btn-info" role="button">Update</a></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <div>Number of books to watch:  <span th:text="${numberOfBooks}"> </div>
+    <button type="button" th:onclick="|window.location.href='/do-stuff'|">Hello</button>
+</div>
+<a th:href="@{/create-book}">Add new book</a>
+</body>
+</html>

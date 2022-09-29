@@ -48,7 +48,7 @@ class BookServiceTest {
                 Arguments.of(Collections.emptyList(),
                         Collections.emptyList()),
                 Arguments.of(Arrays.asList(new Book(1L,"Harry Potter", "Author", "Content", 10)),
-                        Arrays.asList(new Book(1L,"Harry Potter", "Author", "Content", 13))),
+                        Arrays.asList(new Book(1L,"Harry Potter", "Author", "Content", 10))),
                 Arguments.of(Arrays.asList(new Book(1L,"Harry Blotter", "Author", "Content", 15)),
                         Collections.emptyList())
         );
