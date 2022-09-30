@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8"/>
     <title>All Books</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
 </head>
 <body>
 
 <table class="table">
     <thead class = "thead-light">
-    <tr>
+    <tr style="background-color:#9d86f5;">
         <th class="text-left">Title</th>
-        <th class="text-left">Rating</th>
-        <th class="text-left">Priority</th>
-        <th class="text-left">Comment</th>
+        <th class="text-left">Author</th>
+        <th class="text-left">Content</th>
+        <th class="text-left">Price</th>
         <th class="text-left"></th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="watchlistItem : ${watchlistItems}">
-        <td th:text="${watchlistItem.title}">Avatar</td>
+    <tr th:each="watchlistItem : ${watchlistItems}" style="border: 1px solid black">
+        <td th:text="${watchlistItem.title}" >Avatar</td>
         <td th:text="${watchlistItem.author}">7.8</td>
         <td th:text="${watchlistItem.content}">LOW</td>
         <td th:text="${watchlistItem.price}">Peter recommended</td>
@@ -27,9 +28,27 @@
     </tbody>
 </table>
 <div>
-    <div>Number of books to watch:  <span th:text="${numberOfBooks}"> </div>
-    <button type="button" th:onclick="|window.location.href='/do-stuff'|">Hello</button>
+    <form th:action="@{/save-book}" th:object="${book}" method="post">
+        <div class="small-div">
+            <div class="small-div">
+                <label>Author:</label>
+                <input type="text" th:field="*{author}" placeholder="author" >
+            </div>
+            <div class="small-div">
+                <label>Titel:</label>
+                <input type="text" th:field="*{title}" placeholder="title" >
+            </div>
+            <div class="small-div">
+                <label>Content:</label>
+                <input type="text" th:field="*{content}" placeholder="content" >
+            </div>
+            <div class="small-div">
+                <label>Price:</label>
+                <input type="text" th:field="*{price}" placeholder="price" >
+            </div>
+        </div>
+        <input type="submit" value="Add a new Book" />
+    </form>
 </div>
-<a th:href="@{/create-book}">Add new book</a>
 </body>
 </html>

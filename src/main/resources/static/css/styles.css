@@ -1,3 +1,27 @@
 h4 {
    color: red;
 }
+
+table, th, td {
+  border: 1px solid black;
+}
+
+input[type=submit]:focus {
+  border: 3px solid #555;
+    background-color: #999C8D;
+    color: white;
+}
+
+.small-div {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-right: 2px;
+  margin-left: 2px;
+}
+
+div {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
+}

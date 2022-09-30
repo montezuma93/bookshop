@@ -44,13 +44,8 @@ public class WebController {
         allBooksList = bookRepository.findAll();
         model.put("watchlistItems", allBooksList);
         model.put("numberOfBooks", allBooksList.size());
+        model.put("book", new Book());
         return new ModelAndView(viewName , model);
-    }
-
-    @RequestMapping(value="/do-stuff")
-    public String doStuffMethod() {
-        System.out.println("Success");
-        return "allBooksList";
     }
 
     @PostMapping("/save-book")
@@ -64,9 +59,4 @@ public class WebController {
         return new ModelAndView(viewName , model);
     }
 
-    @GetMapping("/create-book")
-    public String createBookForm(Model model) {
-        model.addAttribute("book", new Book());
-        return "create-book";
-    }
 }
