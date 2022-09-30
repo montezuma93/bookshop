@@ -5,3 +5,10 @@ div {
   margin-left: 50px;
   background-color: #999C8D;
  }
+
+.small-div {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-right: 2px;
+  margin-left: 2px;
+}
