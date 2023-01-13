@@ -50,5 +50,9 @@ Dann soll der Titel Germany sein
     public void i_search() throws Throwable {
         WebElement search = driver.findElement(By.id("searchInput"));
         search.sendKeys("Deutschland");
+        WebElement button = driver.findElement(By.xpath("/html/body/div[3]/form/fieldset/button"));
+        button.click();
+        WebElement firstHeading = driver.findElement(By.id("firstHeading"));
+        Assertions.assertThat(firstHeading.getText()).isEqualTo("Deutschland");
     }
 }
