@@ -55,4 +55,10 @@ Dann soll der Titel Germany sein
         WebElement firstHeading = driver.findElement(By.id("firstHeading"));
         Assertions.assertThat(firstHeading.getText()).isEqualTo("Deutschland");
     }
+
+    @Given("^Change Language$")
+    public void change_language() throws Throwable {
+        WebElement search = driver.findElement(By.linkText("English"));
+        search.click();
+    }
 }
